@@ -61,6 +61,7 @@ export LOGIN_FAILED_MESSAGE
 endif
 
 
+
 # ==== MESSAGES ====
 
 define DIRTY_WORKING_DIR_MESSAGE
@@ -73,7 +74,7 @@ export DIRTY_WORKING_DIR_MESSAGE
 # ==== RECIPES THAT AREN'T TO BE TOUCHED ====
 
 check-deploy:
-ifneq ($(findstring -dirtyPOTATO,$(VERSION)POTATO),)
+ifneq ($(findstring -dirty,$(VERSION)),)
 	@echo "$$DIRTY_WORKING_DIR_MESSAGE"
 	@exit 1
 else
