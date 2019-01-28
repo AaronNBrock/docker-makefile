@@ -61,7 +61,6 @@ export LOGIN_FAILED_MESSAGE
 endif
 
 
-
 # ==== MESSAGES ====
 
 define DIRTY_WORKING_DIR_MESSAGE
@@ -70,6 +69,7 @@ Error: Can't deploy with a dirty working directory.
 ***************************************************
 endef
 export DIRTY_WORKING_DIR_MESSAGE
+
 
 # ==== RECIPES THAT AREN'T TO BE TOUCHED ====
 
@@ -112,9 +112,8 @@ push: check-deploy login build
 version:
 	@printf "Version: $(VERSION)\n"
 
+
 # ==== RECIPES ====
-
-
 
 run: build
 	docker run --rm $(PROJECT_NAME)
