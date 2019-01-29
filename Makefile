@@ -70,6 +70,18 @@ Error: Can't deploy with a dirty working directory.
 endef
 export DIRTY_WORKING_DIR_MESSAGE
 
+define VERSION_MESSAGE
+Version: $(VERSION)
+
+Docker tags: 
+$(PROJECT_NAME)
+$(DOCKER_TAG_VERSION)
+$(DOCKER_TAG_LATEST)
+
+
+endef
+export VERSION_MESSAGE
+
 
 # ==== RECIPES THAT AREN'T TO BE TOUCHED ====
 
@@ -110,7 +122,7 @@ push: check-deploy login build
 	docker push $(DOCKER_TAG_VERSION)
 
 version:
-	@printf "Version: $(VERSION)\n"
+	@printf "$$VERSION_MESSAGE"
 
 
 # ==== RECIPES ====
