@@ -1,3 +1,7 @@
+# Most up-to-date version can be found at:
+# https://github.com/AaronNBrock/docker-makefile
+
+
 # ==== CONFIG ====
 # Docker registry or dockerhub username
 DOCKER_REGISTRY := aaronnbrock
