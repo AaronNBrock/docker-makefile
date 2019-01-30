@@ -1,5 +1,5 @@
 ## Introduction
-This `Makefile` is used to keep versioning of your Docker images more consistent.  The first and most important thing to talk about is how "Versioning" is to be handled.  The version is generated using [this git command](https://github.com/AaronNBrock/docker-makefile/blob/master/Makefile#L10):
+This `Makefile` is used to keep versioning of your Docker images more consistent.  The first and most important thing to talk about is how "Versioning" is to be handled.  The version is generated using [this git command](https://github.com/AaronNBrock/docker-makefile/blob/master/Makefile#L43):
 
 ```bash
 git describe --always --dirty --match "v[0-9]*"
@@ -63,7 +63,7 @@ Okay, let's get started!
 Will build & tag the docker image.
 
 #### `make login`
-Attemps to log you into the docker registry.  (See "Registry Login")
+Attemps to log you into the docker registry.  (See "(Registry Login)[https://github.com/AaronNBrock/docker-makefile#registry-login]")
 
 #### `make push` (depends on `build` & `login`)
 If the workding directory isn't dirty, will build, tag then push to the docker registry.
