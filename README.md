@@ -6,7 +6,7 @@ git describe --always --dirty --match "v[0-9]*"
 ```
 
 Then, based on the result of that command the docker images are tagged with 3 tags:
-1. The project name. (ex: `project-name`)
+1. The project name, for easily testing locally. (ex: `project-name`)
 2. The project name with a version. (ex: `project-name:v1.0.0-1-g91f0949`)
 3. The project name with either `latest` or `edge`.  `latest` if that commit was tagged, else `edge`. (ex: `project-name:edge`)
 
@@ -14,19 +14,23 @@ And, finally, if your working directory has uncommited changes, your version wil
 
 That sounds confusing, here are some examples:
 
-* **`1fa88e8`**: On a commit _not_ tagged with a version, or following a commit tagged with a version.<br>
+* On a commit _not_ tagged with a version, or following a commit tagged with a version.<br>
+    **Version**: `1fa88e8`<br>
     **Docker tags**: `project-name`, `project-name:v1.0.0-1-g91f0949`, `project-name:edge`<br>
     **Will push?**  Yes.
 
-* **`v1.0.0`**: when on a commit tagged with `v1.0.0`.<br>
+* When on a commit tagged with `v1.0.0`.<br>
+    **Version**: `v1.0.0`<br>
     **Docker tags**: `project-name`, `project-name:v1.0.0`, `project-name:latest`<br>
     **Will push?**  Yes.
 
-* **`v1.0.0-1-g91f0949`**: When on a commit 1 after `v1.0.0`.<br>
+* When on a commit 1 after `v1.0.0`.<br>
+    **Version**: `v1.0.0-1-g91f0949`<br>
     **Docker tags**: `project-name`, `project-name:v1.0.0-1-g91f0949`, `project-name:edge`<br>
     **Will push?**  Yes.
  
-* **`v1.0.0-1-g91f0949-dirty`**: When on a commit 1 after `v1.0.0`, but your working directory has uncommited changes..<br>
+* When on a commit 1 after `v1.0.0`, but your working directory has uncommited changes..<br>
+    **Version**: `v1.0.0-1-g91f0949-dirty`<br>
     **Docker tags**: `project-name`, `project-name:v1.0.0-1-g91f0949-dirty`, `project-name:edge`<br>
     **Will push?**  No.
 
@@ -38,8 +42,9 @@ Okay, let's get started!
 ## Setup
 
 1. Copy `Makefile` into your project, it should be in the same directory as _your_ `Dockerfile`
-2. Set `DOCKER_REGISTRY` & `PROJECT_NAME` at the top of the Makefile.
-3. (optional) Edit `run` & `run-it` recipes if needed.
+2. Set `DOCKER_REGISTRY`, `DOCKER_USERNAME` & `PROJECT_NAME` at the top of the Makefile as desired.
+
+3. (optional) Edit recipes under the `RECIPES` header, or add your own.
 
     For example, if you needed to mount a volume, your `run` might look something like:
     
@@ -75,13 +80,13 @@ Will build, tag, and run the docker image in interactive mode.
 ## Registry Login
 This `Makefile` also supports automatically logging in using Environment variables, which can be useful if running this `Makefile` inside a build server, like Jenkins.
 
-To do this, simply pass the username and password in as `DOCKER_USERNAME` and `DOCKER_PASSWORD`.
+To do this, simply pass the username and password in as `USERNAME` and `PASSWORD`.
 
 ```bash
-DOCKER_USERNAME=user1 DOCKER_PASSWORD=123456 make login
+USERNAME=user1 PASSWORD=123456 make login
 ```
 
-(note: You only need to specify the username if you're using a private registry.) 
+(note: You only need to specify the username if it differs from the `DOCKER_USERNAME`.) 
 
 
 
