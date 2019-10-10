@@ -14,9 +14,9 @@ And, finally, if your working directory has uncommited changes, your version wil
 
 That sounds confusing, here are some examples:
 
-* On a commit _not_ tagged with a version, or following a commit tagged with a version.<br>
+* On a commit _not_ tagged with a version **and** _not_ following any commits tagged with a version.<br>
     **Version**: `1fa88e8`<br>
-    **Docker tags**: `project-name`, `project-name:v1.0.0-1-g91f0949`, `project-name:edge`<br>
+    **Docker tags**: `project-name`, `project-name:1fa88e8`, `project-name:edge`<br>
     **Will push?**  Yes.
 
 * When on a commit tagged with `v1.0.0`.<br>
